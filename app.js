@@ -22,13 +22,13 @@ class DiscordBot {
 
 
     load_mod(name) {
-        const mod = require(`./discordModules/${name}.js`);
+        const mod = require(`./modules/${name}.js`);
         this.mod[name] = new mod.default(this);
     }
 
     unload_mod(name) {
         try {
-            delete require.cache[require.resolve(`./discordModules/${name}.js`)];
+            delete require.cache[require.resolve(`./modules/${name}.js`)];
             delete this.mod[name];
 
         } catch (err) {
@@ -40,7 +40,7 @@ class DiscordBot {
 
     reload_mod(name) {
         try {
-            delete require.cache[require.resolve(`./discordModules/${name}.js`)];
+            delete require.cache[require.resolve(`./modules/${name}.js`)];
             this.load_mod(name);
             console.log(this.mod[name]);
         } catch (err) {
