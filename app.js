@@ -7,8 +7,13 @@ class DiscordBot {
     constructor(client) {
         this.client = client;
         this.MOD = ['ping', 'ship'];
+        this.REQ_RIGHTS = { // 1: user 0: admin
+            ping: 1,
+            ship: 1,
+            unload: 0
+        }
         this.CONFIG_PATH = './config.js';
-        this.PREFIX = config.botProperties.prefix; 
+        this.PREFIX = config.botProperties.prefix;
         this.mod = {}
         this.init_bot();
         this.init_mod();
@@ -21,9 +26,33 @@ class DiscordBot {
         this.mod[name] = new mod.default(this);
     }
 
+    unload_mod(name) {
+        try {
+            delete require.cache[require.resolve(`./discordModules/${name}.js`)];
+            delete this.mod[name];
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+
+    reload_mod(name) {
+        try {
+            delete require.cache[require.resolve(`./discordModules/${name}.js`)];
+            this.load_mod(name);
+            console.log(this.mod[name]);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
     init_mod() {
         try {
             this.MOD.forEach(name => this.load_mod(name));
+
 
         } catch (err) {
             console.log(err);
@@ -51,10 +80,26 @@ class DiscordBot {
 
                 switch (cmd) {
                     case this.PREFIX + 'ping':
-                        this.mod.ping.pingReply(msg);
+                        try {
+                            this.mod.ping.pingReply(msg);
+                        } catch (err) {
+                            console.log(err);
+                        }
                         break;
                     case this.PREFIX + 'ship':
-                        this.mod.ship.ship(msg, args, client);
+                        try {
+                            this.mod.ship.ship(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                    case this.PREFIX + 'unload':
+                        try {
+                            this.unload_mod(args);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
                 }
             }
         });
