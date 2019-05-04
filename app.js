@@ -21,15 +21,36 @@ class DiscordBot {
     }
 
 
-    load_mod(name) {
-        const mod = require(`./modules/${name}.js`);
-        this.mod[name] = new mod.default(this);
+    load_mod(name, msg) {
+        try {
+            if (this.mod[name] === undefined) {
+                const mod = require(`./modules/${name}.js`);
+                this.mod[name] = new mod.default(this);
+                client.channels.get(msg.channel.id).send(`Successfully loaded ${name}.js.`);
+            } else {
+                client.channels.get(msg.channel.id).send(`**ERROR:** ${name}.js was already loaded.`);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 
-    unload_mod(name) {
+    load_modVanilla(name) {
+        try {
+            const mod = require(`./modules/${name}.js`);
+            this.mod[name] = new mod.default(this);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    unload_mod(name, msg) {
         try {
             delete require.cache[require.resolve(`./modules/${name}.js`)];
             delete this.mod[name];
+            client.channels.get(msg.channel.id).send(`Successfully unloaded ${name}.js.`);
 
         } catch (err) {
             console.log(err);
@@ -41,7 +62,7 @@ class DiscordBot {
     reload_mod(name) {
         try {
             delete require.cache[require.resolve(`./modules/${name}.js`)];
-            this.load_mod(name);
+            this.load_modVanilla(name);
             console.log(this.mod[name]);
         } catch (err) {
             console.log(err);
@@ -51,7 +72,7 @@ class DiscordBot {
 
     init_mod() {
         try {
-            this.MOD.forEach(name => this.load_mod(name));
+            this.MOD.forEach(name => this.load_modVanilla(name));
 
 
         } catch (err) {
@@ -100,7 +121,7 @@ class DiscordBot {
                     case this.PREFIX + 'unload':
                         try {
                             if (this.check_userIsAdmin(msg))
-                                this.unload_mod(args);
+                                this.unload_mod(args, msg);
                         } catch (err) {
                             console.log(err);
                         }
@@ -108,7 +129,7 @@ class DiscordBot {
                     case this.PREFIX + 'load':
                         try {
                             if (this.check_userIsAdmin(msg))
-                                this.load_mod(args);
+                                this.load_mod(args, msg);
                         } catch (err) {
                             console.log(err);
                         }
