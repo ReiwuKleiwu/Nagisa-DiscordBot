@@ -68,6 +68,10 @@ class DiscordBot {
         client.login(config.botProperties.botToken);
     }
 
+    check_userIsAdmin(msg) {
+        return msg.member.permissions.has('ADMINISTRATOR');
+    }
+
 
     cmd_handler() {
         this.client.on('message', msg => {
@@ -95,11 +99,19 @@ class DiscordBot {
                         break;
                     case this.PREFIX + 'unload':
                         try {
-                            this.unload_mod(args);
+                            if (this.check_userIsAdmin(msg))
+                                this.unload_mod(args);
                         } catch (err) {
                             console.log(err);
                         }
                         break;
+                    case this.PREFIX + 'load':
+                        try {
+                            if (this.check_userIsAdmin(msg))
+                                this.load_mod(args);
+                        } catch (err) {
+                            console.log(err);
+                        }
                 }
             }
         });
