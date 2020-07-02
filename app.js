@@ -6,11 +6,17 @@ const config = require('./config');
 class DiscordBot {
     constructor(client) {
         this.client = client;
-        this.MOD = ['ping', 'ship'];
-        this.REQ_RIGHTS = { // 1: user 0: admin
+        this.MOD = ['ping', 'ship', 'newUser', 'date', 'help', 'quiz'];
+        this.REQ_RIGHTS = { // 1: user | 0: admin
             ping: 1,
             ship: 1,
-            unload: 0
+            unload: 0,
+            load: 0,
+            profile: 1,
+            add: 1,
+            normalize: 0,
+            date: 0,
+            help: 0
         }
         this.CONFIG_PATH = './config.js';
         this.PREFIX = config.botProperties.prefix;
@@ -74,7 +80,6 @@ class DiscordBot {
         try {
             this.MOD.forEach(name => this.load_modVanilla(name));
 
-
         } catch (err) {
             console.log(err);
         }
@@ -104,6 +109,13 @@ class DiscordBot {
                 const args = parts.slice(1).join(' ');
 
                 switch (cmd) {
+                    case this.PREFIX + 'help':
+                        try {
+                            this.mod.help.help(msg);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
                     case this.PREFIX + 'ping':
                         try {
                             this.mod.ping.pingReply(msg);
@@ -111,9 +123,67 @@ class DiscordBot {
                             console.log(err);
                         }
                         break;
+                    case this.PREFIX + 'add':
+                        try {
+                            this.mod.newUser.addNewUser(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                        /*case this.PREFIX + 'test':
+                            try {
+                                this.mod.newUser.test(msg, args, client);
+                            } catch (err) {
+                                console.log(err);
+                            }
+                            break;*/
+                        /* case this.PREFIX + 'normalize':
+                             try {
+                                 if (this.check_userIsAdmin(msg)) {
+                                     this.mod.newUser.normalizeRoles(msg, client);
+                                 }
+                             } catch (err) {
+                                 console.log(err);
+                             }
+                             break;*/
+                    case this.PREFIX + 'updatedateprofile':
+                        try {
+                            this.mod.date.updatedateprofile(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                    case this.PREFIX + 'dateprofile':
+                        try {
+                            this.mod.date.dateprofile(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                    case this.PREFIX + 'deletedateprofile':
+                        try {
+                            this.mod.date.deletedateprofile(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
                     case this.PREFIX + 'ship':
                         try {
                             this.mod.ship.ship(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                    case this.PREFIX + 'quiz':
+                        try {
+                            this.mod.quiz.quiz(msg, args, client);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        break;
+                    case this.PREFIX + 'profile':
+                        try {
+                            this.mod.lol_profile.league_profile(msg, args, client);
                         } catch (err) {
                             console.log(err);
                         }
@@ -133,6 +203,7 @@ class DiscordBot {
                         } catch (err) {
                             console.log(err);
                         }
+                        break;
                 }
             }
         });
