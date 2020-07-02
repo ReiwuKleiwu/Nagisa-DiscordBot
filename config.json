@@ -1,8 +1,4 @@
 {
-    "botProperties":
-    {
-        "name": "Reimu",
-        "botToken": "",
-        "prefix": "!"
-    }
+    "prefix" : "!",
+    "token": "NTQ5MzM3MTY4MDc0NzY4Mzk0.Xv5WNA.4e1a24Mmk6OnMInjAEDjjcZoWKs"
 }

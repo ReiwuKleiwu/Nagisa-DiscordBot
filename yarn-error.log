@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Nick\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  D:\Users\Nick\Desktop\Programming\CMDER\bin;D:\Users\Nick\Desktop\Programming\CMDER\vendor\bin;D:\Users\Nick\Desktop\Programming\CMDER\vendor\conemu-maximus5\ConEmu\Scripts;D:\Users\Nick\Desktop\Programming\CMDER\vendor\conemu-maximus5;D:\Users\Nick\Desktop\Programming\CMDER\vendor\conemu-maximus5\ConEmu;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Git\cmd;D:\Brackets\command;C:\Program Files\dotnet\;D:\Users\Nick\Desktop\Programming\PHP;C:\Users\Nick\AppData\Local\Microsoft\WindowsApps;C:\Users\Nick\AppData\Roaming\npm;D:\heroku\bin;C:\Program Files\MongoDB\Server\4.0\bin;C:\Users\Nick\AppData\Local\Programs\Microsoft VS Code\bin;C:\Python27;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\Nick\AppData\Local\Microsoft\WindowsApps;D:\heroku\bin;C:\Program Files\MongoDB\Server\4.0\bin;C:\Users\Nick\AppData\Local\Programs\Microsoft VS Code\bin;D:\Users\Nick\Desktop\Programming\PHP;C:\Python27;C:\Users\Nick\AppData\Roaming\npm;E:\IntelliJ IDEA Community Edition 2020.1.1\bin;D:\Git\cmd;D:\Git\mingw64\bin;D:\Git\usr\bin;D:\Users\Nick\Desktop\Programming\CMDER
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  13.11.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\Nick\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137008:13)
+      at Interface.emit (events.js:315:20)
+      at Interface._ttyWrite (readline.js:873:16)
+      at ReadStream.onkeypress (readline.js:213:10)
+      at ReadStream.emit (events.js:315:20)
+      at emitKeys (internal/readline/utils.js:335:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1140:36)
+      at ReadStream.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:297:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
