@@ -10,5 +10,8 @@ First of all, create a file called "config.json" in the root directory.
 }
 ```
 Insert the token of your bot in this former created "config.json" file. 
+
 Run `npm install` in the root directory. 
+
 Run `node .` in the root directory.
+
