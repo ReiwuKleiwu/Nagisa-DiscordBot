@@ -20,6 +20,8 @@ module.exports = class ReimuClient extends Client {
 		this.events = new Collection();
 
 		this.utils = new Util(this);
+
+		this.owners = options.owners;
 	}
 
 	validate(options) {

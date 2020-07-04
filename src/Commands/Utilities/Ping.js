@@ -4,7 +4,9 @@ module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
-			aliases: ['latency']
+			aliases: ['latency'],
+			description: 'Displays current ping of the bot.',
+			category: 'Utilities'
 		});
 	}
 

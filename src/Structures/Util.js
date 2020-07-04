@@ -16,6 +16,23 @@ module.exports = class Util {
         input.toString().substring(0, 5) === 'class';
 	}
 
+	removeDuplicates(arr) {
+		return [...new Set(arr)];
+	}
+
+	trimArray(arr, maxLen = 10) {
+		if (arr.length > maxLen) {
+			const len = arr.length - maxLen;
+			arr = arr.slice(0, maxLen);
+			arr.push(`${len} more...`);
+		}
+		return arr;
+	}
+
+	capitalise(string) {
+		return string.split(' ').map(str => str.slice(0, 1).toUpperCase() + str.slice(1)).join(' ');
+	}
+
 	get directory() {
 		return `${path.dirname(require.main.filename)}${path.sep}`;
 	}
